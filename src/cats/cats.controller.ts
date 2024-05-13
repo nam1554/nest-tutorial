@@ -1,4 +1,12 @@
-import { Controller, Get, Header, HttpCode, Post, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Header,
+  HttpCode,
+  Post,
+  Redirect,
+  Req,
+} from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
@@ -11,6 +19,8 @@ export class CatsController {
   }
 
   @Get()
+  // @Redirect() takes two arguments, url and statusCode, both are optional. The default value of statusCode is 302 (Found) if omitted.
+  // @Redirect('https://nestjs.com', 301)
   findAll(@Req() request: Request): string {
     return 'This action returns all cats';
   }
