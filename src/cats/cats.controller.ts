@@ -29,8 +29,12 @@ export class CatsController {
   //     return { url: 'https://docs.nestjs.com/v5/' };
   //   }
   // }
-  findAll(@Req() request: Request): string {
-    return 'This action returns all cats';
+  // findAll(@Req() request: Request): string {
+  //   return 'This action returns all cats';
+  // }
+  @Get()
+  async findAll(): Promise<any[]> {
+    return [];
   }
 
   @Get('ab*cd')
