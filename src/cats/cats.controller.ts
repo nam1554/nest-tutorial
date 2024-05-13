@@ -20,7 +20,13 @@ export class CatsController {
 
   @Get()
   // @Redirect() takes two arguments, url and statusCode, both are optional. The default value of statusCode is 302 (Found) if omitted.
+  // Returned values will override any arguments passed to the @Redirect() decorator.
   // @Redirect('https://nestjs.com', 301)
+  // getDocs(@Query('version') version: string) {
+  //   if (version && version === '5') {
+  //     return { url: 'https://docs.nestjs.com/v5/' };
+  //   }
+  // }
   findAll(@Req() request: Request): string {
     return 'This action returns all cats';
   }
