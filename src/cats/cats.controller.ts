@@ -9,6 +9,7 @@ import {
   Redirect,
   Req,
 } from '@nestjs/common';
+import { Observable, of } from 'rxjs';
 
 @Controller('cats')
 export class CatsController {
@@ -29,13 +30,17 @@ export class CatsController {
   //     return { url: 'https://docs.nestjs.com/v5/' };
   //   }
   // }
-  // findAll(@Req() request: Request): string {
-  //   return 'This action returns all cats';
-  // }
-  @Get()
-  async findAll(): Promise<any[]> {
-    return [];
+  findAll(@Req() request: Request): string {
+    return 'This action returns all cats';
   }
+  // @Get()
+  // async findAll(): Promise<any[]> {
+  //   return [];
+  // }
+  // @Get()
+  // findAll(): Observable<any[]> {
+  //   return of([]);
+  // }
 
   @Get('ab*cd')
   findAllWildcard() {
