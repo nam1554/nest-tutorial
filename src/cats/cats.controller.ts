@@ -1,10 +1,11 @@
-import { Controller, Get, HttpCode, Post, Req } from '@nestjs/common';
+import { Controller, Get, Header, HttpCode, Post, Req } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
   @Post()
   //We can easily change this behavior by adding the @HttpCode(...) decorator at a handler level.
   // @HttpCode(204)
+  // @Header('Cache-Control', 'none')
   create(): string {
     return 'This action adds a new cat';
   }
