@@ -3,7 +3,9 @@ import {
   Get,
   Header,
   HttpCode,
+  Param,
   Post,
+  Query,
   Redirect,
   Req,
 } from '@nestjs/common';
@@ -39,5 +41,16 @@ export class CatsController {
     //WARNING
     //A wildcard in the middle of the route is only supported by express.
     return 'This route uses a wildcard';
+  }
+
+  // @Get(':id')
+  // findOne(@Param() params: any): string {
+  //   console.log(params.id);
+  //   return `This action returns a #${params.id} cat`;
+  // }
+  @Get(':id')
+  findOne(@Param('id') id: string): string {
+    console.log(id);
+    return `This action returns a #${id} cat`;
   }
 }
