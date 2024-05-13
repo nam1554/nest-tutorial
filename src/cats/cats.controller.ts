@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   Header,
@@ -10,6 +11,7 @@ import {
   Req,
 } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
+import { CreateCatDto } from './dto/create-cat.dto';
 
 @Controller('cats')
 export class CatsController {
@@ -17,7 +19,8 @@ export class CatsController {
   //We can easily change this behavior by adding the @HttpCode(...) decorator at a handler level.
   // @HttpCode(204)
   // @Header('Cache-Control', 'none')
-  create(): string {
+  async create(@Body() createCatDto: CreateCatDto) {
+    console.log(createCatDto);
     return 'This action adds a new cat';
   }
 
