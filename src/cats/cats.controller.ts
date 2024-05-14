@@ -3,51 +3,54 @@ import {
   Controller,
   Delete,
   Get,
-  HttpStatus,
+  // HttpStatus,
   // Header,
   // HttpCode,
   Param,
   Post,
   Put,
-  Query,
-  Res,
+  // Query,
+  // Res,
   // Redirect,
   // Req,
 } from '@nestjs/common';
 // import { Observable, of } from 'rxjs';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
-import { Response } from 'express';
+// import { Response } from 'express';
+import { CatsService } from './cats.service';
+import { Cat } from './interface/cat.interface';
 
 @Controller('cats')
 export class CatsController {
+  constructor(private readonly catsService: CatsService) {}
+
   @Post()
-  create(@Body() createCatDto: CreateCatDto) {
-    console.log(createCatDto);
-    return 'This action adds a new cat';
+  async create(@Body() createCatDto: CreateCatDto) {
+    this.catsService.create(createCatDto);
   }
 
-  @Post('create2')
-  create2(@Res() res: Response) {
-    console.log(res);
-    res.status(HttpStatus.CREATED).send();
-  }
+  // @Post('create2')
+  // create2(@Res() res: Response) {
+  //   console.log(res);
+  //   res.status(HttpStatus.CREATED).send();
+  // }
 
   @Get()
-  findAll(@Query() query: any) {
-    return `This action returns all cats (limit: ${query.limit} items)`;
+  async findAll(): Promise<Cat[]> {
+    return this.catsService.findAll();
   }
 
-  @Get('findAll2')
-  findAll2(@Res() res: Response) {
-    res.status(HttpStatus.OK).json([]);
-  }
+  // @Get('findAll2')
+  // findAll2(@Res() res: Response) {
+  //   res.status(HttpStatus.OK).json([]);
+  // }
 
-  @Get('findAll3')
-  findAll3(@Res({ passthrough: true }) res: Response) {
-    res.status(HttpStatus.OK);
-    return [];
-  }
+  // @Get('findAll3')
+  // findAll3(@Res({ passthrough: true }) res: Response) {
+  //   res.status(HttpStatus.OK);
+  //   return [];
+  // }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
