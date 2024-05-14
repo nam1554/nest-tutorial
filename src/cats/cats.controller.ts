@@ -43,6 +43,12 @@ export class CatsController {
     res.status(HttpStatus.OK).json([]);
   }
 
+  @Get('findAll3')
+  findAll3(@Res({ passthrough: true }) res: Response) {
+    res.status(HttpStatus.OK);
+    return [];
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return `This action returns a #${id} cat`;
