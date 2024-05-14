@@ -3,18 +3,21 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   // Header,
   // HttpCode,
   Param,
   Post,
   Put,
   Query,
+  Res,
   // Redirect,
   // Req,
 } from '@nestjs/common';
 // import { Observable, of } from 'rxjs';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
+import { Response } from 'express';
 
 @Controller('cats')
 export class CatsController {
@@ -24,9 +27,20 @@ export class CatsController {
     return 'This action adds a new cat';
   }
 
+  @Post('create2')
+  create2(@Res() res: Response) {
+    console.log(res);
+    res.status(HttpStatus.CREATED).send();
+  }
+
   @Get()
   findAll(@Query() query: any) {
     return `This action returns all cats (limit: ${query.limit} items)`;
+  }
+
+  @Get('findAll2')
+  findAll2(@Res() res: Response) {
+    res.status(HttpStatus.OK).json([]);
   }
 
   @Get(':id')
